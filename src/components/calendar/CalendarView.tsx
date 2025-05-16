@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Calendar } from "@/components/ui/calendar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { LeaveRequest, User } from "@/types"
+import { LeaveRequest, User, PublicHoliday } from "@/types"
 import { 
   format, 
   addMonths, 
@@ -21,6 +21,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
+import { publicHolidays } from "@/lib/mock-data"
 
 interface CalendarViewProps {
   leaveRequests: LeaveRequest[]
@@ -39,6 +40,10 @@ export function CalendarView({ leaveRequests, users, mode = "personal" }: Calend
         new Date(request.startDate) <= date &&
         new Date(request.endDate) >= date
     )
+  }
+
+  const getPublicHolidayForDate = (date: Date) => {
+    return publicHolidays.find(holiday => isSameDay(new Date(holiday.date), date))
   }
 
   const handlePrevMonth = () => {
@@ -70,6 +75,7 @@ export function CalendarView({ leaveRequests, users, mode = "personal" }: Calend
         ))}
         {days.map((day) => {
           const requests = getLeaveRequestsForDate(day)
+          const holiday = getPublicHolidayForDate(day)
           return (
             <div
               key={day.toISOString()}
@@ -79,6 +85,11 @@ export function CalendarView({ leaveRequests, users, mode = "personal" }: Calend
               onClick={() => setSelectedDate(day)}
             >
               <div className="flex justify-end text-sm">{format(day, "d")}</div>
+              {holiday && (
+                <div className="text-[10px] bg-purple-100 text-purple-700 px-1 py-0.5 rounded mb-1 truncate">
+                  {holiday.name}
+                </div>
+              )}
               {requests.map((request) => (
                 <div
                   key={request.id}
@@ -131,6 +142,7 @@ export function CalendarView({ leaveRequests, users, mode = "personal" }: Calend
             </div>
             {weekDays.map((day) => {
               const requests = getLeaveRequestsForDate(day)
+              const holiday = getPublicHolidayForDate(day)
               return (
                 <div
                   key={`${day.toISOString()}-${hour}`}
@@ -138,6 +150,11 @@ export function CalendarView({ leaveRequests, users, mode = "personal" }: Calend
                     isWeekend(day) ? "bg-gray-50" : ""
                   }`}
                 >
+                  {holiday && (
+                    <div className="text-[10px] bg-purple-100 text-purple-700 px-1 py-0.5 rounded mb-1 truncate">
+                      {holiday.name}
+                    </div>
+                  )}
                   {requests.map((request) => (
                     <div
                       key={request.id}
@@ -163,6 +180,7 @@ export function CalendarView({ leaveRequests, users, mode = "personal" }: Calend
 
   const renderDayView = () => {
     const requests = getLeaveRequestsForDate(selectedDate)
+    const holiday = getPublicHolidayForDate(selectedDate)
 
     return (
       <div className="space-y-4">
@@ -199,6 +217,11 @@ export function CalendarView({ leaveRequests, users, mode = "personal" }: Calend
           ) : (
             <div className="p-4 text-center text-gray-500">
               No leave requests for this day
+            </div>
+          )}
+          {holiday && (
+            <div className="p-4 text-center text-gray-500">
+              {holiday.name}
             </div>
           )}
         </div>

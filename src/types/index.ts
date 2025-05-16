@@ -57,4 +57,12 @@ export type Team = {
   managerId: string
   members: string[]
   department: string
+}
+
+export interface PublicHoliday {
+  id: string
+  name: string
+  date: Date
+  description: string
+  isNational: boolean
 } 

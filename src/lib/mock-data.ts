@@ -1,4 +1,4 @@
-import { User, LeaveType, LeaveRequest, LeaveBalance, Notification, Team } from "@/types"
+import { User, LeaveType, LeaveRequest, LeaveBalance, Notification, Team, PublicHoliday } from "@/types"
 
 export const users: User[] = [
   {
@@ -142,4 +142,126 @@ export const teams: Team[] = [
     members: ["1", "4", "5"],
     department: "Engineering",
   },
+]
+
+export const publicHolidays: PublicHoliday[] = [
+  {
+    id: "1",
+    name: "New Year's Day",
+    date: new Date("2025-01-01"),
+    description: "First day of the year",
+    isNational: true
+  },
+  {
+    id: "2",
+    name: "Thaipusam",
+    date: new Date("2025-01-13"),
+    description: "Hindu festival",
+    isNational: true
+  },
+  {
+    id: "3",
+    name: "Chinese New Year",
+    date: new Date("2025-01-29"),
+    description: "First day of Chinese New Year",
+    isNational: true
+  },
+  {
+    id: "4",
+    name: "Chinese New Year Holiday",
+    date: new Date("2025-01-30"),
+    description: "Second day of Chinese New Year",
+    isNational: true
+  },
+  {
+    id: "5",
+    name: "Federal Territory Day",
+    date: new Date("2025-02-01"),
+    description: "Federal Territory Day",
+    isNational: true
+  },
+  {
+    id: "6",
+    name: "Prophet Muhammad's Birthday",
+    date: new Date("2025-02-17"),
+    description: "Birthday of Prophet Muhammad",
+    isNational: true
+  },
+  {
+    id: "7",
+    name: "Hari Raya Aidilfitri",
+    date: new Date("2025-03-31"),
+    description: "First day of Hari Raya Aidilfitri",
+    isNational: true
+  },
+  {
+    id: "8",
+    name: "Hari Raya Aidilfitri Holiday",
+    date: new Date("2025-04-01"),
+    description: "Second day of Hari Raya Aidilfitri",
+    isNational: true
+  },
+  {
+    id: "9",
+    name: "Good Friday",
+    date: new Date("2025-04-18"),
+    description: "Christian holiday",
+    isNational: true
+  },
+  {
+    id: "10",
+    name: "Labour Day",
+    date: new Date("2025-05-01"),
+    description: "International Workers' Day",
+    isNational: true
+  },
+  {
+    id: "11",
+    name: "Wesak Day",
+    date: new Date("2025-05-13"),
+    description: "Buddhist festival",
+    isNational: true
+  },
+  {
+    id: "12",
+    name: "Hari Raya Haji",
+    date: new Date("2025-06-07"),
+    description: "Islamic festival",
+    isNational: true
+  },
+  {
+    id: "13",
+    name: "Awal Muharram",
+    date: new Date("2025-06-28"),
+    description: "Islamic New Year",
+    isNational: true
+  },
+  {
+    id: "14",
+    name: "National Day",
+    date: new Date("2025-08-31"),
+    description: "Malaysia's Independence Day",
+    isNational: true
+  },
+  {
+    id: "15",
+    name: "Malaysia Day",
+    date: new Date("2025-09-16"),
+    description: "Formation of Malaysia",
+    isNational: true
+  },
+  {
+    id: "16",
+    name: "Deepavali",
+    date: new Date("2025-10-21"),
+    description: "Hindu festival of lights",
+    isNational: true
+  },
+  {
+    id: "17",
+    name: "Christmas Day",
+    date: new Date("2025-12-25"),
+    description: "Christian holiday",
+    isNational: true
+  }
 ] 
